@@ -2,3 +2,4 @@
 *.so
 /sample
 /PONG
+/.DS_Store

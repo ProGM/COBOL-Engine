@@ -14,7 +14,7 @@
               02 SDL-RENDERER USAGE POINTER.
               02 GAME-WIDTH PIC 9(3) VALUE 640.
               02 GAME-HEIGHT PIC 9(3) VALUE 480.
-              02 GAME-NAME PIC X(20) VALUE 'My Game Window'.
+              02 GAME-NAME PIC X(20).
        
            01 SDL-STATUS       USAGE SIGNED-INT.
            01 NULL-POINTER     USAGE POINTER VALUE IS NULL.
@@ -27,6 +27,8 @@
                BY VALUE 62001
                RETURNING SDL-WINDOW
            END-CALL.
+
+           CALL "TTF_Init".
 
            IF SDL-STATUS NOT = 0
                DISPLAY "SDL_Init failed. Exiting."
