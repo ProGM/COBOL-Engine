@@ -13,28 +13,28 @@ all: PONG
 run: PONG
 	./PONG
 
-libsdlkeycheck.so: engine/sdl_key_check.c
+libsdlkeycheck.so: ../../engine/sdl_key_check.c
 	gcc -shared -fPIC -o $@ $< $(SDL_OPTIONS)
 
-CreateGame.o: engine/CreateGame.CBL
+CreateGame.o: ../../engine/CreateGame.CBL
 	cobc -c -O3 $<
 
-PrepareUpdateGame.o: engine/PrepareUpdateGame.CBL
+PrepareUpdateGame.o: ../../engine/PrepareUpdateGame.CBL
 	cobc -c -O3 $<
 
-CompleteUpdateGame.o: engine/CompleteUpdateGame.CBL
+CompleteUpdateGame.o: ../../engine/CompleteUpdateGame.CBL
 	cobc -c -O3 $<
 
-DrawText.o: engine/DrawText.CBL
+DrawText.o: ../../engine/DrawText.CBL
 	cobc -c -O3 $<
 
-UpdateBall.o: game/UpdateBall.CBL
+UpdateBall.o: src/UpdateBall.CBL
 	cobc -c -O3 $<
 
-UpdatePlayer.o: game/UpdatePlayer.CBL
+UpdatePlayer.o: src/UpdatePlayer.CBL
 	cobc -c -O3 $<
 
-UpdateEnemy.o: game/UpdateEnemy.CBL
+UpdateEnemy.o: src/UpdateEnemy.CBL
 	cobc -c -O3 $<
 
 PONG: $(ENGINE_FILES) $(GAME_FILES) libsdlkeycheck.so PONG.CBL

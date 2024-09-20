@@ -19,6 +19,14 @@ For more details on how to install SDL2, SDL2_ttf and SDL2_image, please refer t
 
 https://wiki.libsdl.org/SDL2/Installation
 
+## Usage
+For now, it's just a list of utilities wrapping SDL2 library functions in COBOL.
+You can find them in the `engine` folder.
+
+If you want to see them in action, there's a simple example in the `examples` folder.
+
+To run it, navigate to the `examples/pong` folder and run the following commands:
+
 ### Compiling
 ```bash
 make
@@ -28,6 +36,11 @@ make
 ```bash
 make run
 ```
+
+Here's PONG in Cobol!
+
+![PONG in COBOL](./examples/pong/screenshot.png)
+
 
 ## Huge thanks
 https://github.com/oshaboy/SDL-COBOL-DEMO

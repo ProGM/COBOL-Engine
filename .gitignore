@@ -1,5 +1,5 @@
 *.o
 *.so
 /sample
-/PONG
+examples/pong/PONG
 /.DS_Store
