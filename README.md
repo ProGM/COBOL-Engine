@@ -1,9 +1,8 @@
-# https://github.com/oshaboy/SDL-COBOL-DEMO
+# COB OL' Engine
 
 ![COB OL' Engine](./logo.png)
 
-# COB OL' Engine
-A game engine written in COBOL based on SDL2.
+A game engine written in COBOL based on the SDL2 library.
 
 Because WHY NOT?
 
@@ -43,6 +42,7 @@ Here's PONG in Cobol!
 
 
 ## Huge thanks
+The base of this project was inspired by the following repository:
 https://github.com/oshaboy/SDL-COBOL-DEMO
 
 ### Also inspired by
