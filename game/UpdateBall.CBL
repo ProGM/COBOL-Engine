@@ -26,15 +26,29 @@
            02 SDL-RENDERER USAGE POINTER.
            02 GAME-WIDTH PIC 9(3) VALUE 640.
            02 GAME-HEIGHT PIC 9(3) VALUE 480.
-           02 GAME-STATE PIC 9(3) VALUE 0. *> 0 = game, 1 = gameover
 
        01 BALL-POS.
            02 BALL-POS-X COMP-1.
            02 BALL-POS-Y COMP-1.
 
+       01 PLAYER-RECT.
+           02 PLAYER-X USAGE SIGNED-INT VALUE 8.
+           02 PLAYER-Y USAGE SIGNED-INT VALUE 240.
+           02 PLAYER-W USAGE SIGNED-INT VALUE 8.
+           02 PLAYER-H USAGE SIGNED-INT VALUE 32.
+
+       01 ENEMY-RECT.
+           02 ENEMY-X USAGE SIGNED-INT VALUE 632.
+           02 ENEMY-Y USAGE SIGNED-INT VALUE 240.
+           02 ENEMY-W USAGE SIGNED-INT VALUE 8.
+           02 ENEMY-H USAGE SIGNED-INT VALUE 32.
+
        01 DELTA-TIME COMP-1.
 
-       PROCEDURE DIVISION USING GAME BALL-POS DELTA-TIME.
+       01 STATE PIC 9(3) VALUE 0.
+
+       PROCEDURE DIVISION USING
+           GAME BALL-POS PLAYER-RECT ENEMY-RECT DELTA-TIME STATE.
        UPDATE-BALL.
 
            COMPUTE BALL-POS-X = BALL-POS-X + BALL-SPEED-X * DELTA-TIME.
@@ -44,11 +58,23 @@
            MOVE BALL-POS-Y TO BALL-Y.
 
            IF BALL-POS-X < 8 THEN
-               MOVE BALL-BASE-SPEED TO BALL-SPEED-X
+               IF BALL-POS-Y > PLAYER-Y
+               AND BALL-POS-Y < PLAYER-Y + PLAYER-H THEN
+                   MOVE BALL-BASE-SPEED TO BALL-SPEED-X
+               ELSE
+                   DISPLAY "GAME OVER"
+                   MOVE 1 TO STATE
+               END-IF
            END-IF.
 
            IF BALL-POS-X > GAME-WIDTH - 8 THEN
-               COMPUTE BALL-SPEED-X = -BALL-BASE-SPEED
+               IF BALL-POS-Y > ENEMY-Y
+               AND BALL-POS-Y < ENEMY-Y + ENEMY-Y THEN
+                   COMPUTE BALL-SPEED-X = -BALL-BASE-SPEED
+               ELSE
+                   DISPLAY "VICTORY"
+                   MOVE 2 TO STATE
+               END-IF
            END-IF.
 
            IF BALL-POS-Y < 0 THEN
